@@ -1,0 +1,66 @@
+name: Build DMG
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number (e.g. 1.0.0)"
+        required: true
+        default: "1.0.0"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Ganaka repo
+        uses: actions/checkout@v4
+
+      - name: Checkout ganaka-app (private)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/ganaka-app
+          token: ${{ secrets.REPO_TOKEN }}
+          path: ganaka-app
+
+      - name: Patch script to strip quarantine
+        working-directory: ganaka-app
+        run: |
+          perl -i -pe 's|echo "Creating DMG..."|xattr -cr "\$STAGING_DIR/\$APP_NAME.app"\necho "Creating DMG..."|' create-dmg.sh
+
+      - name: Build universal DMG
+        working-directory: ganaka-app
+        run: |
+          chmod +x create-dmg.sh
+          ./create-dmg.sh ${{ github.event.inputs.version }}
+
+      - name: Locate and copy DMG
+        run: |
+          DMG=$(find ganaka-app -name "*.dmg" -type f | head -1)
+          if [ -z "$DMG" ]; then
+            echo "ERROR: No .dmg file found after build"
+            find ganaka-app/.build -type f 2>/dev/null || echo "No .build directory"
+            exit 1
+          fi
+          echo "Found DMG: $DMG"
+          cp "$DMG" "./Ganaka-${{ github.event.inputs.version }}.dmg"
+          ls -lh "./Ganaka-${{ github.event.inputs.version }}.dmg"
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ganaka-${{ github.event.inputs.version }}.dmg
+          path: Ganaka-${{ github.event.inputs.version }}.dmg
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: Ganaka v${{ github.event.inputs.version }}
+          files: Ganaka-${{ github.event.inputs.version }}.dmg
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
