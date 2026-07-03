@@ -38,7 +38,10 @@
 - Native macOS experience
 - Lightning-fast calculations
 - Lightweight and unobtrusive
-
+- Multi-tab workspaces with drag-and-drop reordering
+- Auto-save for `.ganaka` workspace files
+- Undo/Redo support (Cmd+Z / Cmd+Shift+Z)
+- 
 ---
 
 ## Types of calculations
