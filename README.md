@@ -22,9 +22,13 @@
 
 ## Download
 
-**[Download Latest Release](https://github.com/spdeepak/Ganaka/releases/latest)**
+<div align="center">
 
-1. Download the `.dmg` file from the link above
+[![Download for macOS](https://img.shields.io/badge/Download_for_macOS-Latest_Release-007AFF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/spdeepak/Ganaka/releases/download/v1.1.0/Ganaka-1.1.0.dmg)
+
+</div>
+
+1. Click the **Download** button aboveto download the latest version
 2. Open the `.dmg`
 3. Drag **Ganaka** to your Applications folder
 
