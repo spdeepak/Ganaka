@@ -37,9 +37,9 @@
 ---
 
 ## Demo
-
+<p align="center">
 https://github.com/user-attachments/assets/7add026e-7ad4-4de0-ac3c-e7c6a24729bc
-
+</p>
 ---
 
 ## Features
