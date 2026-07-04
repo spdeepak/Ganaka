@@ -23,7 +23,8 @@
     <img src="demo.gif" width="600">
 </p>
 
-![Demo](demo.gif)
+[//]: # (![Demo]&#40;demo.gif&#41;)
+
 ---
 
 ## Download
