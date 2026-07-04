@@ -19,6 +19,13 @@
 </div>
 
 ---
+<p align="center">
+    <img src="demo.gif" width="600">
+</p>
+
+[//]: # (![Demo]&#40;demo.gif&#41;)
+
+---
 
 ## Download
 
