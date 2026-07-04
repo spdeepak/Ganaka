@@ -19,6 +19,12 @@
 </div>
 
 ---
+<p align="center">
+    <img src="demo.gif" width="600">
+</p>
+
+![Demo](demo.gif)
+---
 
 ## Download
 
@@ -34,12 +40,6 @@
 
 > Requires macOS 14.0 or later.
 
----
-
-## Demo
-<div align="center">
-https://github.com/user-attachments/assets/7add026e-7ad4-4de0-ac3c-e7c6a24729bc
-</div>
 ---
 
 ## Features
